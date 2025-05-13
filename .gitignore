@@ -1,1 +1,4 @@
 /Updated_Consignatierooster.xlsx
+.DS_Store
+.venv
+__pycache__/
