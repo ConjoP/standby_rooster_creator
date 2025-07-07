@@ -1,0 +1,8 @@
+{
+  "year": 2025,
+  "people": [
+    {"Name": "Alice Example", "Phone": "+31612345678"},
+    {"Name": "Bob Example", "Phone": "+31687654321"},
+    {"Name": "Back up 1", "Phone": "+31600000000"}
+  ]
+}

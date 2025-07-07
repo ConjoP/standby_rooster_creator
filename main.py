@@ -3,29 +3,13 @@ from datetime import datetime, timedelta
 import calendar
 import openpyxl
 from openpyxl.styles import PatternFill, Font, Border, Side, Alignment
+import json
 
-# Prompt user to enter people and their phone numbers (supports any number of people)
-people = []
-print("Enter names and phone numbers for the 'telefoonnummers' sheet.")
-print("Type 'done' when finished.")
-while True:
-    name = input("Enter name (or 'done' to finish): ").strip()
-    if name.lower() == "done":
-        break
-    if not name:
-        print("Name cannot be empty. Please try again.")
-        continue
-    phone = input(f"Enter phone number for {name}: ").strip()
-    people.append({"Name": name, "Phone": phone})
-
-# Ask user for the year
-while True:
-    year_input = input("Enter the year for the template (e.g., 2025): ").strip()
-    if year_input.isdigit() and len(year_input) == 4:
-        year = int(year_input)
-        break
-    print("Invalid year. Please enter a 4-digit year.")
-
+# Load configuration from config.json
+with open("config.json", "r") as f:
+    config = json.load(f)
+people = config["people"]
+year = int(config["year"])
 
 # Generate months with correct number of days and start day names
 months = []
@@ -134,6 +118,6 @@ for sheet_name in wb.sheetnames:
                 pass
         ws.column_dimensions[col_letter].width = max(10, min(max_length + 2, 30))
 
-wb.save("Updated_Consignatierooster.xlsx")
+wb.save("standby_schedule.xlsx")
 
 print("Excel file generated successfully with improved layout!")
